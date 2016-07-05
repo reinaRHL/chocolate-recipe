@@ -1,0 +1,15 @@
+<p>
+  <strong>Title:</strong>
+  <%= @recipe.title %>
+</p>
+ 
+<p>
+  <strong>Text:</strong>
+  <%= @recipe.text %>
+</p>
+ 
+
+ 
+<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<%= link_to 'Back', recipes_path %>
+

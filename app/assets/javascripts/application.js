@@ -15,3 +15,13 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+
+function add_fields(link, association, content) {
+  $(document).on("click", "a.link_to_add_fields", function(e){
+        e.preventDefault();
+        var link = $(this);
+        var association = $(this).data("association");
+        var content = $(this).data("content");
+        add_fields(link, association, content);
+    });
+}
