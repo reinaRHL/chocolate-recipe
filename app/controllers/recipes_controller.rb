@@ -11,8 +11,6 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new 
     2.times{ @recipe.other_ingredients.build }
-    
-    
   end
  
   def edit
