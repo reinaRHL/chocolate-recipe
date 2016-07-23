@@ -51,15 +51,15 @@ class RecipesController < ApplicationController
     def recipe_params
       params.require(:recipe).permit(:id, :title, :description, 
                                      :chocolates_attributes =>
-                                            [:id, :chocolatename, :amount, :recipe_id],
+                                            [:id, :chocolatename, :amount, :recipe_id, :_destroy],
                                      :dairies_attributes =>
-                                            [:id, :dairyname, :amount, :recipe_id],
-                                    :liqueurs_attributes =>
-                                            [:id, :liquorname, :amount, :recipe_id],
-                                    :purees_attributes =>
-                                            [:id, :pureename, :amount, :recipe_id],
-                                    :other_ingredients_attributes =>
-                                            [:id, :name, :amount, :recipe_id])
+                                            [:id, :dairyname, :amount, :recipe_id, :_destroy],
+                                     :liqueurs_attributes =>
+                                            [:id, :liquorname, :amount, :recipe_id, :_destroy],
+                                     :purees_attributes =>
+                                            [:id, :pureename, :amount, :recipe_id, :_destroy],
+                                     :other_ingredients_attributes =>
+                                            [:id, :name, :amount, :recipe_id, :_destroy])
     end
     
     
