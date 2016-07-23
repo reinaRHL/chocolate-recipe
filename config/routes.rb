@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'recipes#index'
   resources :recipes do
+    resources :chocolates
     resources :other_ingredients
   end
   

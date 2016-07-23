@@ -25,16 +25,35 @@
   </p>
  
  
- 
+  <%= f.fields_for :chocolates do |builder| %>
+    <%= render 'chocolate_fields', f: builder %>
+  <% end %>
+  <%= link_to_add_fields "Add more field", f, :chocolates %>
+  
+  <%= f.fields_for :dairies do |builder| %>
+    <%= render 'dairy_fields', f: builder %>
+  <% end %>
+  <%= link_to_add_fields "Add more field", f, :dairies %>
+  <br>
+  <%= f.fields_for :liqueurs do |builder| %>
+    <%= render 'liqueur_fields', f: builder %>
+  <% end %>
+  <%= link_to_add_fields "Add more field", f, :liqueurs %>
+  <br>
+  <%= f.fields_for :purees do |builder| %>
+    <%= render 'puree_fields', f: builder %>
+  <% end %>
+  <%= link_to_add_fields "Add more field", f, :purees %>
+  <br>
   <%= f.fields_for :other_ingredients do |builder| %>
     <%= render 'other_ingredient_fields', f: builder %>
-    
   <% end %>
-  <%= link_to_add_fields "Add more", f, :other_ingredients %>
-  
+  <%= link_to_add_fields "Add more field", f, :other_ingredients %>
+  <br>
   
   
   <p>
+    <br>
     <%= f.submit %>
   </p>
  

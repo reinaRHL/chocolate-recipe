@@ -5,10 +5,14 @@
  
 <p>
   <strong>Text:</strong>
-  <%= @recipe.text %>
+  <%= @recipe.description %>
 </p>
  
 
+<p>
+  <strong>Choco:</strong>
+  <%= @recipe.chocolates %>
+</p>
  
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>
