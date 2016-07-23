@@ -5,7 +5,7 @@ class Recipe < ActiveRecord::Base
   has_many :dairies, :dependent => :destroy
   has_many :purees, :dependent => :destroy
   has_many :liqueurs, :dependent => :destroy
-  accepts_nested_attributes_for :other_ingredients, :reject_if => lambda { |a| a[:name].blank? }
+  accepts_nested_attributes_for :other_ingredients, allow_destroy: true
   
-  belong_to :user
+  belongs_to :user
 end
