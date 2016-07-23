@@ -8,6 +8,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
   end
  
+ #nested model
   def new
     @recipe = Recipe.new 
     chocolate = @recipe.chocolates.build
@@ -47,6 +48,7 @@ class RecipesController < ApplicationController
     redirect_to recipes_path
   end
  
+ #nested model: make sure to include :id, and :_destroy
   private
     def recipe_params
       params.require(:recipe).permit(:id, :title, :description, 
@@ -61,7 +63,4 @@ class RecipesController < ApplicationController
                                      :other_ingredients_attributes =>
                                             [:id, :name, :amount, :recipe_id, :_destroy])
     end
-    
-    
-    
 end

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'recipes#index'
+  
+  #nested model
   resources :recipes do
     resources :chocolates
     resources :dairies

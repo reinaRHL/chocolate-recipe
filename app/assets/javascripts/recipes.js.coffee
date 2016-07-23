@@ -3,16 +3,18 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 jQuery ->
+    #click the button: remove field
     $('form').on 'click', '.remove_fields', (event) ->
         $(this).prev('input[type=hidden]').val('1')
         $(this).closest('fieldset').hide()
         event.preventDefault()
         
-        
+    #click the button: add field    
     $('form').on 'click', '.add_fields', (event) ->
         time = new Date().getTime()
         regexp = new RegExp($(this).data('id'), 'g')
         $(this).before($(this).data('fields').replace(regexp, time))
         event.preventDefault()
         
+#look at ApplicationHelper
      

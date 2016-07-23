@@ -14,6 +14,8 @@
     </div>
   <% end %>
  
+ 
+<% #displays recipe form %>
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title %>
@@ -24,33 +26,40 @@
     <%= f.text_area :description %>
   </p>
  
- 
+ <p>
   <%= f.fields_for :chocolates do |builder| %>
     <%= render 'chocolate_fields', f: builder %>
   <% end %>
   <%= link_to_add_fields "Add Chocolate", f, :chocolates %>
+ </p>
   
-  <%= f.fields_for :dairies do |builder| %>
+  <p>
+    <%= f.fields_for :dairies do |builder| %>
     <%= render 'dairy_fields', f: builder %>
-  <% end %>
-  <%= link_to_add_fields "Add Dairy", f, :dairies %>
-  <br>
-  <%= f.fields_for :liqueurs do |builder| %>
-    <%= render 'liqueur_fields', f: builder %>
-  <% end %>
-  <%= link_to_add_fields "Add Liquor", f, :liqueurs %>
-  <br>
-  <%= f.fields_for :purees do |builder| %>
-    <%= render 'puree_fields', f: builder %>
-  <% end %>
-  <%= link_to_add_fields "Add Puree", f, :purees %>
-  <br>
-  <%= f.fields_for :other_ingredients do |builder| %>
-    <%= render 'other_ingredient_fields', f: builder %>
-  <% end %>
-  <%= link_to_add_fields "Add Other", f, :other_ingredients %>
-  <br>
+    <% end %>
+    <%= link_to_add_fields "Add Dairy", f, :dairies %>
+  </p>
   
+  <p>
+    <%= f.fields_for :liqueurs do |builder| %>
+    <%= render 'liqueur_fields', f: builder %>
+    <% end %>
+    <%= link_to_add_fields "Add Liquor", f, :liqueurs %>
+  </p>
+
+  <p>
+    <%= f.fields_for :purees do |builder| %>
+    <%= render 'puree_fields', f: builder %>
+    <% end %>
+    <%= link_to_add_fields "Add Puree", f, :purees %>
+  </p>
+  
+  <p>
+    <%= f.fields_for :other_ingredients do |builder| %>
+    <%= render 'other_ingredient_fields', f: builder %>
+    <% end %>
+    <%= link_to_add_fields "Add Other", f, :other_ingredients %>
+  </p>
   
   <p>
     <br>
