@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   root 'recipes#index'
   resources :recipes do
     resources :chocolates
+    resources :dairies
+    resources :liqueurs
+    resources :purees
     resources :other_ingredients
   end
   

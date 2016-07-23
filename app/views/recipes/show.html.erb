@@ -4,15 +4,18 @@
 </p>
  
 <p>
-  <strong>Text:</strong>
+  <strong>Description:</strong>
   <%= @recipe.description %>
 </p>
  
+<% for chocolate in @recipe.chocolates %>
+ <p>
+  <strong>Chocolate:</strong>
+  <%= chocolate.chocolatename %>
+</p> 
+<% end %>
 
-<p>
-  <strong>Choco:</strong>
-  <%= @recipe.chocolates %>
-</p>
+
  
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>
