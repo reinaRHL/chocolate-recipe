@@ -15,7 +15,34 @@
 </p> 
 <% end %>
 
+<% for dairy in @recipe.dairies %>
+ <p>
+  <strong>Dairy:</strong>
+  <%= dairy.dairyname %>
+</p> 
+<% end %>
 
+<% for liquor in @recipe.liqueurs %>
+ <p>
+  <strong>Liquor:</strong>
+  <%= liquor.liquorname %>
+</p> 
+<% end %>
+
+<% for puree in @recipe.purees %>
+ <p>
+  <strong>Puree:</strong>
+  <%= puree.pureename %>
+</p> 
+<% end %>
+
+<% for other in @recipe.other_ingredients %>
+ <p>
+  <strong>Other:</strong>
+  <%= other.name %>
+</p> 
+<% end %>
+ 
  
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>
