@@ -6,12 +6,12 @@ class RecipesController < ApplicationController
   
   def show
     @recipe = Recipe.find(params[:id])
+
   end
  
  #nested model
   def new
     @recipe = Recipe.new 
-    chocolate = @recipe.chocolates.build
     dairy = @recipe.dairies.build
     liqueur = @recipe.liqueurs.build
     puree = @recipe.purees.build
@@ -51,7 +51,7 @@ class RecipesController < ApplicationController
  #nested model: make sure to include :id, and :_destroy
   private
     def recipe_params
-      params.require(:recipe).permit(:id, :title, :description, 
+      params.require(:recipe).permit(:id, :title, :description, :chocolate_name,  
                                      :chocolates_attributes =>
                                             [:id, :chocolatename, :amount, :recipe_id, :_destroy],
                                      :dairies_attributes =>

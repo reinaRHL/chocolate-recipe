@@ -27,11 +27,12 @@
   </p>
  
  <p>
-  <%= f.fields_for :chocolates do |builder| %>
-    <%= render 'chocolate_fields', f: builder %>
-  <% end %>
-  <%= link_to_add_fields "Add Chocolate", f, :chocolates %>
- </p>
+  <%= f.label :chocolate_name %><br />
+  <%= f.collection_select :chocolate_name, Chocolate.all, :chocolatename, :chocolatename, :prompt => "Select a chocolate" %>
+</p>
+
+
+
   
   <p>
     <%= f.fields_for :dairies do |builder| %>
