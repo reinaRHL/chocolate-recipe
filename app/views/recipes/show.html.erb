@@ -14,34 +14,6 @@
 <% # Look at each form, recipes.js.coffee, and application helper file for JS/Jqueries %>
 <% ################################################################################### %> 
 
-<% for chocolate in @recipe.chocolates %>
-  <p>
-    <strong>Chocolate:</strong>
-    <%= chocolate.chocolatename %>
-  </p> 
-<% end %>
-
-<% for dairy in @recipe.dairies %>
-  <p>
-    <strong>Dairy:</strong>
-    <%= dairy.dairyname %>
-  </p> 
-<% end %>
-
-<% for liquor in @recipe.liqueurs %>
-  <p>
-    <strong>Liquor:</strong>
-    <%= liquor.liquorname %>
-  </p> 
-<% end %>
-
-<% for puree in @recipe.purees %>
-  <p>
-    <strong>Puree:</strong>
-    <%= puree.pureename %>
-  </p> 
-<% end %>
-
 <% for other in @recipe.other_ingredients %>
   <p>
     <strong>Other:</strong>

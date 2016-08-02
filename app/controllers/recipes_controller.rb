@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
   
   def index
      @recipes = Recipe.all
+  
   end
   
   def show
@@ -12,9 +13,7 @@ class RecipesController < ApplicationController
  #nested model
   def new
     @recipe = Recipe.new 
-    dairy = @recipe.dairies.build
-    liqueur = @recipe.liqueurs.build
-    puree = @recipe.purees.build
+    
     other_ingredient = @recipe.other_ingredients.build
   end
  
@@ -26,6 +25,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     
     if @recipe.save
+     
       redirect_to @recipe
     else
       render 'new'
@@ -51,15 +51,8 @@ class RecipesController < ApplicationController
  #nested model: make sure to include :id, and :_destroy
   private
     def recipe_params
-      params.require(:recipe).permit(:id, :title, :description, :chocolate_name,  
-                                     :chocolates_attributes =>
-                                            [:id, :chocolatename, :amount, :recipe_id, :_destroy],
-                                     :dairies_attributes =>
-                                            [:id, :dairyname, :amount, :recipe_id, :_destroy],
-                                     :liqueurs_attributes =>
-                                            [:id, :liquorname, :amount, :recipe_id, :_destroy],
-                                     :purees_attributes =>
-                                            [:id, :pureename, :amount, :recipe_id, :_destroy],
+      params.require(:recipe).permit(:id, :title, :description, :link_recipe_ings_attributes => [:id, :recipe_id, :chocolate_id], 
+                    
                                      :other_ingredients_attributes =>
                                             [:id, :name, :amount, :recipe_id, :_destroy])
     end

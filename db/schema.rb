@@ -11,30 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802005214) do
+ActiveRecord::Schema.define(version: 20160802043832) do
 
   create_table "chocolates", force: :cascade do |t|
     t.string   "chocolatename"
-    t.float    "amount"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.integer  "recipe_id"
   end
 
   create_table "dairies", force: :cascade do |t|
     t.string   "dairyname"
-    t.float    "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "recipe_id"
   end
+
+  create_table "link_recipe_ings", force: :cascade do |t|
+    t.integer  "recipe_id"
+    t.integer  "chocolate_id"
+    t.integer  "dairy_id"
+    t.integer  "puree_id"
+    t.integer  "liqueur_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "link_recipe_ings", ["chocolate_id"], name: "index_link_recipe_ings_on_chocolate_id"
+  add_index "link_recipe_ings", ["dairy_id"], name: "index_link_recipe_ings_on_dairy_id"
+  add_index "link_recipe_ings", ["liqueur_id"], name: "index_link_recipe_ings_on_liqueur_id"
+  add_index "link_recipe_ings", ["puree_id"], name: "index_link_recipe_ings_on_puree_id"
+  add_index "link_recipe_ings", ["recipe_id"], name: "index_link_recipe_ings_on_recipe_id"
 
   create_table "liqueurs", force: :cascade do |t|
     t.string   "liquorname"
-    t.float    "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "recipe_id"
   end
 
   create_table "other_ingredients", force: :cascade do |t|
@@ -47,10 +57,8 @@ ActiveRecord::Schema.define(version: 20160802005214) do
 
   create_table "purees", force: :cascade do |t|
     t.string   "pureename"
-    t.float    "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "recipe_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -59,7 +67,6 @@ ActiveRecord::Schema.define(version: 20160802005214) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "chocolate_name"
   end
 
   create_table "users", force: :cascade do |t|
