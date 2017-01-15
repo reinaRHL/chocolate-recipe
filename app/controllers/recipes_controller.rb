@@ -25,11 +25,11 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     
     if @recipe.save
-     
       redirect_to @recipe
     else
       render 'new'
     end
+    
   end
  
   def update
@@ -51,8 +51,8 @@ class RecipesController < ApplicationController
  #nested model: make sure to include :id, and :_destroy
   private
     def recipe_params
-      params.require(:recipe).permit(:id, :title, :description, :link_recipe_ings_attributes => [:id, :recipe_id, :chocolate_id], 
-                    
+      params.require(:recipe).permit(:id, :title, :description, :chocolate_amount, :dairy_amount,
+                                     :link_recipe_ings_attributes => [:id, :recipe_id, :chocolate_id, :dairy_id],
                                      :other_ingredients_attributes =>
                                             [:id, :name, :amount, :recipe_id, :_destroy])
     end

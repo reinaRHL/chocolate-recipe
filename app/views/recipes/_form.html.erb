@@ -4,7 +4,7 @@
     <div id="error_explanation">
       <h2>
         <%= pluralize(@recipe.errors.count, "error") %> prohibited
-        this article from being saved:
+        this recipe from being saved:
       </h2>
       <ul>
         <% @recipe.errors.full_messages.each do |msg| %>
@@ -27,15 +27,18 @@
   </p>
  
 
- <%= f.fields_for :link_recipe_ings, @recipe.link_recipe_ings.build do |c| %>
-   <%= c.collection_select :chocolate_id, Chocolate.all, :id, :chocolatename %>
- <% end %>
+  <%= f.fields_for :link_recipe_ings, @recipe.link_recipe_ings.build do |c| %>
+    <%= c.collection_select :chocolate_id, Chocolate.all, :id, :chocolatename, 
+        :include_blank => true, 
+        :selected => @recipe.link_recipe_ings.first.chocolate_id %>
+  <% end %>
+
 
   <p>
     <%= f.fields_for :other_ingredients do |builder| %>
-    <%= render 'other_ingredient_fields', f: builder %>
+      <%= render 'other_ingredient_fields', f: builder %>
     <% end %>
-    <%= link_to_add_fields "Add Other", f, :other_ingredients %>
+    <%= link_to_add_fields "Add More Ingredient", f, :other_ingredients %>
   </p>
   
   <p>

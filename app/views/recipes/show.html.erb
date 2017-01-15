@@ -14,10 +14,26 @@
 <% # Look at each form, recipes.js.coffee, and application helper file for JS/Jqueries %>
 <% ################################################################################### %> 
 
+<p>
+  <strong>Chocolate:</strong>
+  <% choID =  @recipe.link_recipe_ings.first.chocolate_id %>
+  <% chocoSelected = Chocolate.find(choID) %>
+  <%= chocoSelected.chocolatename %>
+</p>
+
+<p>
+  <strong>Chocolate Amount:</strong>
+  <%= @recipe.chocolate_amount %>
+</p>
+
+
+
 <% for other in @recipe.other_ingredients %>
   <p>
     <strong>Other:</strong>
     <%= other.name %>
+    <Strong> Amount</Strong>
+    <%= other.amount %>
   </p> 
 <% end %>
  
