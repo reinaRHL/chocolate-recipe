@@ -47,23 +47,23 @@
   <% end %>
 
   <p>
-    <%= f.label :chocolate_amount %><br>
-    <%= f.text_area :chocolate_amount %>
+    <%= f.label :chocolate_amount %>
+    <%= f.text_field :chocolate_amount %>
   </p>
 
   <p>
-    <%= f.label :dairy_amount %><br>
-    <%= f.text_area :dairy_amount %>
+    <%= f.label :dairy_amount %>
+    <%= f.text_field :dairy_amount %>
   </p>
 
   <p>
-    <%= f.label :puree_amount %><br>
-    <%= f.text_area :puree_amount %>
+    <%= f.label :puree_amount %>
+    <%= f.text_field :puree_amount %>
   </p>
   
   <p>
-    <%= f.label :liqueur_amount %><br>
-    <%= f.text_area :liqueur_amount %>
+    <%= f.label :liqueur_amount %>
+    <%= f.text_field :liqueur_amount %>
   </p>
   
   
@@ -74,6 +74,14 @@
     <% end %>
     <%= link_to_add_fields "Add More Ingredient", f, :other_ingredients %>
   </p>
+  
+  
+  <p>
+    <%= f.label :notes %><br>
+    <%= f.text_area :notes %>
+  </p>
+  
+  
   
   <p>
     <br>

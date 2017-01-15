@@ -51,7 +51,8 @@ class RecipesController < ApplicationController
  #nested model: make sure to include :id, and :_destroy
   private
     def recipe_params
-      params.require(:recipe).permit(:id, :title, :description, :chocolate_amount, :dairy_amount, :puree_amount, :liqueur_amount,
+      params.require(:recipe).permit(:id, :title, :description, :notes, 
+                                    :chocolate_amount, :dairy_amount, :puree_amount, :liqueur_amount,
                                      :link_recipe_ings_attributes => [:id, :recipe_id, :chocolate_id, :dairy_id, :puree_id, :liqueur_id],
                                      :other_ingredients_attributes =>
                                             [:id, :name, :amount, :recipe_id, :_destroy])

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170115072919) do
+ActiveRecord::Schema.define(version: 20170115205639) do
 
   create_table "chocolates", force: :cascade do |t|
     t.string   "chocolatename"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20170115072919) do
     t.float    "liqueur_amount"
     t.float    "dairy_amount"
     t.float    "puree_amount"
+    t.text     "notes"
   end
 
   create_table "users", force: :cascade do |t|
