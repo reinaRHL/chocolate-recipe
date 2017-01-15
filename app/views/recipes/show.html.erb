@@ -38,6 +38,31 @@
   <%= @recipe.dairy_amount %>
 </p>
 
+<p>
+  <strong>Puree:</strong>
+  <% pID =  @recipe.link_recipe_ings.first.puree_id %>
+  <% pureeSelected = Puree.find(pID) %>
+  <%= pureeSelected.pureename %>
+</p>
+
+<p>
+  <strong>Puree Amount:</strong>
+  <%= @recipe.puree_amount %>
+</p>
+
+<p>
+  <strong>Liqueur:</strong>
+  <% lID =  @recipe.link_recipe_ings.first.liqueur_id %>
+  <% liSelected = Liqueur.find(lID) %>
+  <%= liSelected.liquorname %>
+</p>
+
+<p>
+  <strong>Dairy Amount:</strong>
+  <%= @recipe.dairy_amount %>
+</p>
+
+
 <% for other in @recipe.other_ingredients %>
   <p>
     <strong>Other:</strong>

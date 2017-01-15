@@ -36,19 +36,37 @@
         :include_blank => true, 
         :selected => @recipe.link_recipe_ings.first.dairy_id %>
         
+    <%= c.collection_select :puree_id, Puree.all, :id, :pureename, 
+        :include_blank => true, 
+        :selected => @recipe.link_recipe_ings.first.puree_id %>
+        
+    <%= c.collection_select :liqueur_id, Liqueur.all, :id, :liquorname, 
+        :include_blank => true, 
+        :selected => @recipe.link_recipe_ings.first.liqueur_id %>
+        
   <% end %>
 
   <p>
     <%= f.label :chocolate_amount %><br>
     <%= f.text_area :chocolate_amount %>
   </p>
-  
-
 
   <p>
     <%= f.label :dairy_amount %><br>
     <%= f.text_area :dairy_amount %>
   </p>
+
+  <p>
+    <%= f.label :puree_amount %><br>
+    <%= f.text_area :puree_amount %>
+  </p>
+  
+  <p>
+    <%= f.label :liqueur_amount %><br>
+    <%= f.text_area :liqueur_amount %>
+  </p>
+  
+  
 
   <p>
     <%= f.fields_for :other_ingredients do |builder| %>
