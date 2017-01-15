@@ -1,6 +1,6 @@
 class Recipe < ActiveRecord::Base
-  validates :title, :description, :chocolate_amount, presence: true
-  validates :chocolate_amount, numericality: true
+  validates :title, :description, :chocolate_amount, :dairy_amount, presence: true
+  validates :chocolate_amount, :dairy_amount, numericality: true
   
   validates_associated :link_recipe_ings
   

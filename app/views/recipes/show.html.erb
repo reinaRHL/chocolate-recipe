@@ -26,7 +26,17 @@
   <%= @recipe.chocolate_amount %>
 </p>
 
+<p>
+  <strong>Dairy:</strong>
+  <% dID =  @recipe.link_recipe_ings.first.dairy_id %>
+  <% dairySelected = Dairy.find(dID) %>
+  <%= dairySelected.dairyname %>
+</p>
 
+<p>
+  <strong>Dairy Amount:</strong>
+  <%= @recipe.dairy_amount %>
+</p>
 
 <% for other in @recipe.other_ingredients %>
   <p>
