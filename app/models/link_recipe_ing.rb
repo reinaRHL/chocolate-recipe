@@ -6,7 +6,6 @@ class LinkRecipeIng < ActiveRecord::Base
   belongs_to :puree
   belongs_to :liqueur
 
-
   validates :recipe_id, uniqueness: true, if: :cleared?
  
   def cleared?
@@ -18,5 +17,6 @@ class LinkRecipeIng < ActiveRecord::Base
     return true
   end
   
+  validates :chocolate_id, :dairy_id, presence: true
   
 end

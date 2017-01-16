@@ -6,7 +6,6 @@ class Recipe < ActiveRecord::Base
   
   has_many :link_recipe_ings , dependent: :destroy
   has_many :chocolates, through: :link_recipe_ings
-  
   has_many :dairies, through: :link_recipe_ings
   has_many :purees, through: :link_recipe_ings
   has_many :liqueurs, through: :link_recipe_ings

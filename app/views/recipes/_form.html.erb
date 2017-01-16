@@ -31,42 +31,40 @@
     <%= c.collection_select :chocolate_id, Chocolate.all, :id, :chocolatename, 
         :include_blank => true, 
         :selected => @recipe.link_recipe_ings.first.chocolate_id %>
+    
+    <p>
+    <%= f.label :chocolate_amount %>
+    <%= f.text_field :chocolate_amount %>
+    </p>    
         
     <%= c.collection_select :dairy_id, Dairy.all, :id, :dairyname, 
         :include_blank => true, 
         :selected => @recipe.link_recipe_ings.first.dairy_id %>
-        
+    
+    <p>
+    <%= f.label :dairy_amount %>
+    <%= f.text_field :dairy_amount %>
+    </p>
+  
     <%= c.collection_select :puree_id, Puree.all, :id, :pureename, 
         :include_blank => true, 
         :selected => @recipe.link_recipe_ings.first.puree_id %>
         
+    <p>
+    <%= f.label :puree_amount %>
+    <%= f.text_field :puree_amount %>
+    </p>
+        
     <%= c.collection_select :liqueur_id, Liqueur.all, :id, :liquorname, 
         :include_blank => true, 
         :selected => @recipe.link_recipe_ings.first.liqueur_id %>
-        
-  <% end %>
-
-  <p>
-    <%= f.label :chocolate_amount %>
-    <%= f.text_field :chocolate_amount %>
-  </p>
-
-  <p>
-    <%= f.label :dairy_amount %>
-    <%= f.text_field :dairy_amount %>
-  </p>
-
-  <p>
-    <%= f.label :puree_amount %>
-    <%= f.text_field :puree_amount %>
-  </p>
-  
-  <p>
+    
+    <p>
     <%= f.label :liqueur_amount %>
     <%= f.text_field :liqueur_amount %>
-  </p>
-  
-  
+    </p>
+        
+  <% end %>
 
   <p>
     <%= f.fields_for :other_ingredients do |builder| %>
@@ -80,7 +78,6 @@
     <%= f.label :notes %><br>
     <%= f.text_area :notes %>
   </p>
-  
   
   
   <p>

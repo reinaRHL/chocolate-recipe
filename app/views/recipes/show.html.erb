@@ -22,7 +22,7 @@
 </p>
 
 <p>
-  <strong>Chocolate Amount:</strong>
+  <strong>Chocolate Amount (g):</strong>
   <%= @recipe.chocolate_amount %>
 </p>
 
@@ -34,32 +34,52 @@
 </p>
 
 <p>
-  <strong>Dairy Amount:</strong>
+  <strong>Dairy Amount (g):</strong>
   <%= @recipe.dairy_amount %>
 </p>
 
 <p>
   <strong>Puree:</strong>
   <% pID =  @recipe.link_recipe_ings.first.puree_id %>
-  <% pureeSelected = Puree.find(pID) %>
-  <%= pureeSelected.pureename %>
+  <% if Puree.exists?(pID) %>
+    <% pureeSelected = Puree.find(pID) %>
+    <%= pureeSelected.pureename %>
+  <% else %>
+    <%= 'N/A' %>
+  <% end %>
 </p>
 
 <p>
-  <strong>Puree Amount:</strong>
-  <%= @recipe.puree_amount %>
+  <% if Puree.exists?(pID) %>
+    <strong>Puree Amount (g):</strong>
+    <% if @recipe.puree_amount != nil %>
+      <%= @recipe.puree_amount %>
+    <% else %>
+      <%= 'Unknown' %>
+    <% end %>
+  <% end %>
 </p>
 
 <p>
   <strong>Liqueur:</strong>
   <% lID =  @recipe.link_recipe_ings.first.liqueur_id %>
-  <% liSelected = Liqueur.find(lID) %>
-  <%= liSelected.liquorname %>
+  <% if Liqueur.exists?(lID) %>
+    <% liSelected = Liqueur.find(lID) %>
+    <%= liSelected.liquorname %>
+  <% else %>
+    <%= 'N/A' %>
+  <% end %>
 </p>
 
 <p>
-  <strong>Dairy Amount:</strong>
-  <%= @recipe.dairy_amount %>
+  <% if Liqueur.exists?(lID) %>
+    <strong>Liqueur Amount (g):</strong>
+    <% if @recipe.liqueur_amount != nil %>
+      <%= @recipe.liqueur_amount %>
+    <% else %>
+      <%= 'Unknown' %>
+    <% end %>
+  <% end %>
 </p>
 
 
