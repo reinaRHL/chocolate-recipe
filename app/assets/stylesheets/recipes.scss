@@ -1,3 +1,34 @@
 // Place all the styles related to the recipes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#logo {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float:left;
+    margin-right: 10px;
+}
+
+#logo:hover{
+    color: white;
+    text-decoration:none;
+}
+
+body{
+    padding-top:80px;
+}
+
+.footer {
+    margin-top:20px;
+    border-top: 1px solid #eaeaea;
+    color: #777;
+}
+
+.nav_item{
+    margin-left:25px;
+    float: left;
+    margin-top: 15px;
+}
