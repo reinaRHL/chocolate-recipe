@@ -1,14 +1,17 @@
-<%= form_for @recipe do |f| %>
+<div class= "center jumbotron">
+  <h2>Recipe Details</h2>
+  <hr class = "thickLine">
+  <div class= "row content">
+    <%= form_for @recipe do |f| %>
  
-  <% if @recipe.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@recipe.errors.count, "error") %> prohibited
+    <% if @recipe.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited
         this recipe from being saved:
-      </h2>
+        </h2>
       <ul>
         <% @recipe.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+        <li><%= msg %></li>
         <% end %>
       </ul>
     </div>
@@ -16,73 +19,79 @@
  
  
 <% #displays recipe form %>
-  <p>
+    <p>
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
- 
-  <p>
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </p>
- 
-
-  <%= f.fields_for :link_recipe_ings, @recipe.link_recipe_ings.build do |c| %>
-    <%= c.collection_select :chocolate_id, Chocolate.all, :id, :chocolatename, 
-        :include_blank => true, 
-        :selected => @recipe.link_recipe_ings.first.chocolate_id %>
-    
-    <p>
-    <%= f.label :chocolate_amount %>
-    <%= f.text_field :chocolate_amount %>
-    </p>    
-        
-    <%= c.collection_select :dairy_id, Dairy.all, :id, :dairyname, 
-        :include_blank => true, 
-        :selected => @recipe.link_recipe_ings.first.dairy_id %>
-    
-    <p>
-    <%= f.label :dairy_amount %>
-    <%= f.text_field :dairy_amount %>
-    </p>
+    <%= f.text_field :title, :class => 'textbox' %><br><br>
   
-    <%= c.collection_select :puree_id, Puree.all, :id, :pureename, 
-        :include_blank => true, 
-        :selected => @recipe.link_recipe_ings.first.puree_id %>
-        
-    <p>
-    <%= f.label :puree_amount %>
-    <%= f.text_field :puree_amount %>
+    <%= f.label :description %><br>
+    <%= f.text_area :description, :class => 'textbox' %><br>
     </p>
-        
-    <%= c.collection_select :liqueur_id, Liqueur.all, :id, :liquorname, 
+    <br>
+    <h4>Ingredients</h4>
+    <hr class = "thinLine">
+    <div class = "row ingredient textarea">
+      
+    <%= f.label :chocolate %>
+    <%= f.fields_for :link_recipe_ings, @recipe.link_recipe_ings.build do |c| %>
+      <%= c.collection_select :chocolate_id, Chocolate.all, :id, :chocolatename, 
         :include_blank => true, 
-        :selected => @recipe.link_recipe_ings.first.liqueur_id %>
+        :selected => @recipe.link_recipe_ings.first.chocolate_id,
+        :class => 'textbox' %>
+        
+      <%= f.text_field :chocolate_amount, placeholder: "Amount (g)", :class => 'textbox' %><br><br>
+      
+      <%= f.label :Dairy %>
+      <%= c.collection_select :dairy_id, Dairy.all, :id, :dairyname, 
+        :include_blank => true, 
+        :selected => @recipe.link_recipe_ings.first.dairy_id,
+        :class => 'textbox' %>
     
-    <p>
-    <%= f.label :liqueur_amount %>
-    <%= f.text_field :liqueur_amount %>
-    </p>
-        
-  <% end %>
-
-  <p>
+      <%= f.text_field :dairy_amount, placeholder: "Amount (g)", :class => 'textbox' %><br><br>
+  
+      <%= f.label :Puree %>
+      <%= c.collection_select :puree_id, Puree.all, :id, :pureename, 
+        :include_blank => true, 
+        :selected => @recipe.link_recipe_ings.first.puree_id,
+        :class => 'textbox' %>
+  
+      <%= f.text_field :puree_amount, placeholder: "Amount (g)", :class => 'textbox' %><br><br>
+  
+      <%= f.label :liqueur %>
+      <%= c.collection_select :liqueur_id, Liqueur.all, :id, :liquorname, 
+        :include_blank => true, 
+        :selected => @recipe.link_recipe_ings.first.liqueur_id,
+        :class => 'textbox' %>
+    
+      <%= f.text_field :liqueur_amount, placeholder: "Amount (g)", :class => 'textbox' %><br><br>
+  
+    <% end %>
     <%= f.fields_for :other_ingredients do |builder| %>
       <%= render 'other_ingredient_fields', f: builder %>
     <% end %>
-    <%= link_to_add_fields "Add More Ingredient", f, :other_ingredients %>
-  </p>
-  
-  
-  <p>
-    <%= f.label :notes %><br>
-    <%= f.text_area :notes %>
-  </p>
-  
-  
-  <p>
+    <div class = "add_fields">
+    <%= link_to_add_fields "Add more ingredient", f, :other_ingredients%>
+    </div>
+    <br><br>
+    <%= f.label :notes, "Notes/Tips" %>
     <br>
-    <%= f.submit %>
-  </p>
+    <%= f.text_area :notes, :class => 'textbox' %>
+    </div>
+    <br><br>
+    <%= f.submit :class => 'button' %><br><br>
+  
+    <%= link_to recipes_path, class: "btn btn-default" do %>
+      <i class="glyphicon glyphicon-circle-arrow-left"><span> Back</span></i>
+    <% end %>
+    
+    
+    <% end %>
+  
+  </div>
+  
+</div>
+</div>
  
-<% end %>
+
+
+
+

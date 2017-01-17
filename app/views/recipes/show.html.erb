@@ -1,102 +1,94 @@
 <% #displays recipe entry %>
-
-<p>
-  <strong>Title:</strong>
-  <%= @recipe.title %>
-</p>
- 
-<p>
-  <strong>Description:</strong>
-  <%= @recipe.description %>
-</p>
- 
+<div class= "center jumbotron">
+  <h2>Recipe Details</h2>
+  <hr class = "thickLine">
+  <div class= "row showdetails">
+    <h3 class = "title_bold"><%= @recipe.title %></h3>
+    <h5><%= @recipe.description %></h5>
+    <hr class = "thinLine">
+    <div class = "row ingredient textarea">
+    
 <% ################################################################################### %> 
 <% # Look at each form, recipes.js.coffee, and application helper file for JS/Jqueries %>
 <% ################################################################################### %> 
 
-<p>
-  <strong>Chocolate:</strong>
-  <% choID =  @recipe.link_recipe_ings.first.chocolate_id %>
-  <% chocoSelected = Chocolate.find(choID) %>
-  <%= chocoSelected.chocolatename %>
-</p>
 
-<p>
-  <strong>Chocolate Amount (g):</strong>
-  <%= @recipe.chocolate_amount %>
-</p>
+    <strong>Chocolate</strong><br>
+    <% choID =  @recipe.link_recipe_ings.first.chocolate_id %>
+    <% chocoSelected = Chocolate.find(choID) %>
+    <%= chocoSelected.chocolatename %>
+    <%= @recipe.chocolate_amount %><span>g</span>
+    <br><br>
 
-<p>
-  <strong>Dairy:</strong>
-  <% dID =  @recipe.link_recipe_ings.first.dairy_id %>
-  <% dairySelected = Dairy.find(dID) %>
-  <%= dairySelected.dairyname %>
-</p>
+    <strong>Dairy</strong><br>
+    <% dID =  @recipe.link_recipe_ings.first.dairy_id %>
+    <% dairySelected = Dairy.find(dID) %>
+    <%= dairySelected.dairyname %>
+    <%= @recipe.dairy_amount %><span>g</span>
+    <br><br>
 
-<p>
-  <strong>Dairy Amount (g):</strong>
-  <%= @recipe.dairy_amount %>
-</p>
-
-<p>
-  <strong>Puree:</strong>
-  <% pID =  @recipe.link_recipe_ings.first.puree_id %>
-  <% if Puree.exists?(pID) %>
-    <% pureeSelected = Puree.find(pID) %>
-    <%= pureeSelected.pureename %>
-  <% else %>
-    <%= 'N/A' %>
-  <% end %>
-</p>
-
-<p>
-  <% if Puree.exists?(pID) %>
-    <strong>Puree Amount (g):</strong>
-    <% if @recipe.puree_amount != nil %>
-      <%= @recipe.puree_amount %>
+    <strong>Puree</strong><br>
+    <% pID =  @recipe.link_recipe_ings.first.puree_id %>
+    <% if Puree.exists?(pID) %>
+      <% pureeSelected = Puree.find(pID) %>
+      <%= pureeSelected.pureename %>
     <% else %>
-      <%= 'Unknown' %>
+      <%= 'N/A' %>
+      <br><br>
     <% end %>
-  <% end %>
-</p>
 
-<p>
-  <strong>Liqueur:</strong>
-  <% lID =  @recipe.link_recipe_ings.first.liqueur_id %>
-  <% if Liqueur.exists?(lID) %>
-    <% liSelected = Liqueur.find(lID) %>
-    <%= liSelected.liquorname %>
-  <% else %>
-    <%= 'N/A' %>
-  <% end %>
-</p>
-
-<p>
-  <% if Liqueur.exists?(lID) %>
-    <strong>Liqueur Amount (g):</strong>
-    <% if @recipe.liqueur_amount != nil %>
-      <%= @recipe.liqueur_amount %>
+    <% if Puree.exists?(pID) %>
+      <% if @recipe.puree_amount != nil %>
+        <%= @recipe.puree_amount %><span>g</span>
+        <br><br>
+      <% else %>
+        <%= 'Unknown amount' %>
+        <br><br>
+      <% end %>
+    <% end %>
+    
+    <strong>Liqueur</strong><br>
+    <% lID =  @recipe.link_recipe_ings.first.liqueur_id %>
+    <% if Liqueur.exists?(lID) %>
+      <% liSelected = Liqueur.find(lID) %>
+      <%= liSelected.liquorname %>
     <% else %>
-      <%= 'Unknown' %>
+      <%= 'N/A' %>
+      <br><br>
     <% end %>
-  <% end %>
-</p>
 
+    <% if Liqueur.exists?(lID) %>
+      <% if @recipe.liqueur_amount != nil %>
+        <%= @recipe.liqueur_amount %><span>g</span>
+        <br><br>
+      <% else %>
+        <%= 'Unknown amount' %>
+        <br><br>
+      <% end %>
+    <% end %>
 
-<% for other in @recipe.other_ingredients %>
-  <p>
-    <strong>Other:</strong>
+  <% for other in @recipe.other_ingredients %>
+    <strong>Other</strong><br>
     <%= other.name %>
-    <Strong> Amount</Strong>
     <%= other.amount %>
-  </p> 
+    <br><br>
+  <% end %>
+ 
+  <strong>Notes/Tips</strong><br>
+  <h5><%= @recipe.notes %></h5><br>
+
+
+
+<%= link_to recipes_path, class: "btn btn-default" do %>
+      <i class="glyphicon glyphicon-circle-arrow-left"><span> Back</span></i>
 <% end %>
- 
-<p>
-  <strong>Extra Notes</strong>
-  <%= @recipe.notes %>
-</p> 
- 
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %>
+
+<%= link_to edit_recipe_path(@recipe), class: "btn btn-default" do %>
+      <i class="glyphicon glyphicon-edit"><span> Edit</span></i>
+<% end %>
+    
+    </div>
+  </div>
+</div>
+
 

@@ -1,9 +1,7 @@
 <fieldset>
-       <br>
        <%= f.label :name, "Other Ingredient" %>
-       <%= f.text_field :name %><br>
-       <%= f.label :amount, "Amount" %>
-       <%= f.text_field :amount %>
+       <%= f.text_field :name,  :class => 'textbox'%>
+       <%= f.text_field :amount, placeholder: "   Amount", :class => 'textbox' %>
        <br>
        <%= f.hidden_field :_destroy %>
        <%= link_to "Remove this ingredient", "#", class: "remove_fields" %>
