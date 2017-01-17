@@ -12,7 +12,6 @@
 <% # Look at each form, recipes.js.coffee, and application helper file for JS/Jqueries %>
 <% ################################################################################### %> 
 
-
     <strong>Chocolate</strong><br>
     <% choID =  @recipe.link_recipe_ings.first.chocolate_id %>
     <% chocoSelected = Chocolate.find(choID) %>
@@ -67,6 +66,16 @@
       <% end %>
     <% end %>
 
+  <% if @recipe.butter_amount != nil %>
+    <strong>Butter</strong><br>
+    <%= @recipe.butter_amount %><span>g</span><br><br>
+  <% end %>
+  
+  <% if @recipe.glucose_amount != nil %>
+    <strong>Glucose</strong><br>
+    <%= @recipe.glucose_amount %><span>g</span><br><br>
+  <% end %>
+  
   <% for other in @recipe.other_ingredients %>
     <strong>Other</strong><br>
     <%= other.name %>
@@ -78,7 +87,122 @@
   <h5><%= @recipe.notes %></h5><br>
 
 
+  <Strong>Recipe Analysis</Strong><br>
+  
+  <div class = "row analysis">
+  <% anyError = false %>
+  <% total = total_amount(@recipe.chocolate_amount, @recipe.dairy_amount, 
+                          @recipe.puree_amount, @recipe.liqueur_amount, 
+                          @recipe.glucose_amount, @recipe.butter_amount) %>
+  
+  <% if tooMuchCream(@recipe.dairy_amount, @recipe.chocolate_amount)   %>
+    <br>
+    <li><%= "Milk/cream to chocolate ratio is bit high." %></li>
+    <%= "Consider reducing the amount of cream/milk." %><br>
+    <% anyError = true %>
+  <% end %>
+  
+  <% if toolittleCream(@recipe.dairy_amount, @recipe.chocolate_amount)   %>
+    <br>
+    <li><%= "The amount of cream/milk is too low." %></li>
+    <%= "Consider adding more cream/milk." %><br>
+    <% anyError = true %>
+  <% end %>
+  
+  <% if choID == 23 %>
+    <% if !dark_liquidOK(@recipe.dairy_amount, @recipe.liqueur_amount, @recipe.puree_amount, @recipe.chocolate_amount)   %>
+      <br>
+      <li><%= "The amount of liquid is too low. " %></li>
+      <%= "Consider increasing the amount of cream/milk, puree, or liqueur." %><br>
+      <% anyError = true %>
+    <% end %>
+  <% end %>
 
+  <% if choID == 22 or choID == 24 %>
+    <% if !milkwhite_liquidOK(@recipe.dairy_amount, @recipe.liqueur_amount, @recipe.puree_amount, @recipe.chocolate_amount)   %>
+      <br>
+      <li><%= "The amount of liquid is too low." %></li>
+      <%= "Consider increasing the amount of cream/milk, puree, or liqueur." %><br>
+      <% anyError = true %>
+    <% end %>
+  <% end %>
+
+  
+  <% if @recipe.glucose_amount != nil %>
+    <% if @recipe.glucose_amount/total > 0.1 %>
+      <br>
+      <li><%= "Too much glucose. Consider reducing the amount of glucose." %></li>
+      <% lower = @recipe.dairy_amount* 0.25 %>
+      <% higher = @recipe.dairy_amount* 0.30 %>
+      <%= "We recommend to put #{lower} ~ #{higher}g of glucose, based on the current recipe."%><br>
+      <% anyError = true %>
+    <% end %>
+  <% end %>
+  
+  <% if @recipe.liqueur_amount != nil %>
+    <% if @recipe.liqueur_amount/ @recipe.dairy_amount > 0.30 %>
+      <br>
+      <li><%= "Maybe the amount of liqueur is too high. " %></li>
+      <% lower = @recipe.dairy_amount* 0.20 %>
+      <% higher = @recipe.dairy_amount* 0.25 %>
+      <%= "We recommend to put #{lower} ~ #{higher}g of liqueur, based on the current recipe."%><br>
+      <% anyError = true %>
+    <% end %>
+  <% end %>
+  
+  <% if choID == 22 %>
+    <% chocoFat = @recipe.chocolate_amount * 0.55 * 0.5 %>
+  <% elsif choID == 23 %>
+    <% chocoFat = @recipe.chocolate_amount * 0.75 * 0.5 %>
+  <% elsif choID == 24 %>
+    <% chocoFat = @recipe.chocolate_amount * 0.20 %>
+  <% end %>
+  
+  <% if dID == 3 %>
+    <% dairyFat = 0.0 %>
+  <% elsif dID == 4 %>
+    <% dairyFat = @recipe.dairy_amount * 0.01 %>
+  <% elsif dID == 8 %>
+    <% dairyFat = @recipe.dairy_amount * 0.02 %>
+  <% elsif dID == 9 %>
+    <% dairyFat = @recipe.dairy_amount * 0.35 %>
+  <% end %>
+  
+  
+  <% if @recipe.butter_amount == nil %>
+    <% butterFat = 0.0 %>
+  <% else %>
+    <% butterFat = @recipe.butter_amount * 0.96 %>
+  <% end %>
+  
+  <% totalFat = butterFat + dairyFat + chocoFat %>
+  
+  <% if choID == 24 %>
+    <% if !fatOkForWhite(totalFat, total) %>
+      <br>
+      <li><%= "The amount of fat is too high. Chocolate ganache containing high fat is easy to be seperated." %></li>
+      <%= "Consider reducing the amount of fat (cream/milk, chocolate, or butter)." %> <br>
+      <% anyError = true %>
+    <% end %>
+  <% end %>
+  
+  <% if choID == 22 or choID == 23 %>
+    <% if !fatOkFormilkdark(totalFat, total) %>
+      <br>
+      <li><%= "The amount of fat is too high. Chocolate ganache containing high fat is easy to be seperated." %></li>
+      <%= " Consider reducing the amount of fat (cream/milk, chocolate, or butter)." %> <br>
+      <% anyError = true %>
+    <% end %>
+  <% end %>
+  
+  <% if anyError == false %>
+    <%= "Perfect!!" %>
+  <% end %>
+  
+  </div>
+  
+  
+<br>
 <%= link_to recipes_path, class: "btn btn-default" do %>
       <i class="glyphicon glyphicon-circle-arrow-left"><span> Back</span></i>
 <% end %>

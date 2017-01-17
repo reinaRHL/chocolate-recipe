@@ -15,6 +15,7 @@ class Recipe < ActiveRecord::Base
   has_many :other_ingredients , dependent: :destroy
   accepts_nested_attributes_for :other_ingredients, allow_destroy: true
   
-  
   belongs_to :user
+  
+  
 end
