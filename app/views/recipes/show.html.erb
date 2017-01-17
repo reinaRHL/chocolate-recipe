@@ -98,31 +98,44 @@
   <% if tooMuchCream(@recipe.dairy_amount, @recipe.chocolate_amount)   %>
     <br>
     <li><%= "Milk/cream to chocolate ratio is bit high." %></li>
-    <%= "Consider reducing the amount of cream/milk." %><br>
+    <%= "Consider reducing the amount of cream/milk, or putting more chocolate." %><br>
     <% anyError = true %>
   <% end %>
   
   <% if toolittleCream(@recipe.dairy_amount, @recipe.chocolate_amount)   %>
     <br>
     <li><%= "The amount of cream/milk is too low." %></li>
-    <%= "Consider adding more cream/milk." %><br>
+    <%= "Consider adding more cream/milk or reducing chocolate." %><br>
     <% anyError = true %>
   <% end %>
   
   <% if choID == 23 %>
-    <% if !dark_liquidOK(@recipe.dairy_amount, @recipe.liqueur_amount, @recipe.puree_amount, @recipe.chocolate_amount)   %>
+    <% if dark_liquidtoohigh(@recipe.dairy_amount, @recipe.liqueur_amount, @recipe.puree_amount, @recipe.chocolate_amount)   %>
       <br>
       <li><%= "The amount of liquid is too low. " %></li>
       <%= "Consider increasing the amount of cream/milk, puree, or liqueur." %><br>
       <% anyError = true %>
     <% end %>
+    
+    <% if dark_liquidtoolow(@recipe.dairy_amount, @recipe.liqueur_amount, @recipe.puree_amount, @recipe.chocolate_amount)   %>
+      <br>
+      <li><%= "The mixture is too liquidy. Might be ok for shell chocolate." %></li>
+      <% anyError = true %>
+    <% end %>
+    
   <% end %>
 
   <% if choID == 22 or choID == 24 %>
-    <% if !milkwhite_liquidOK(@recipe.dairy_amount, @recipe.liqueur_amount, @recipe.puree_amount, @recipe.chocolate_amount)   %>
+    <% if milkwhite_liquidtoohigh(@recipe.dairy_amount, @recipe.liqueur_amount, @recipe.puree_amount, @recipe.chocolate_amount)   %>
       <br>
       <li><%= "The amount of liquid is too low." %></li>
       <%= "Consider increasing the amount of cream/milk, puree, or liqueur." %><br>
+      <% anyError = true %>
+    <% end %>
+    
+    <% if milkwhite_liquidtoolow(@recipe.dairy_amount, @recipe.liqueur_amount, @recipe.puree_amount, @recipe.chocolate_amount)   %>
+      <br>
+      <li><%= "The mixture is too liquidy. Might be ok with shell chocolate." %></li>
       <% anyError = true %>
     <% end %>
   <% end %>

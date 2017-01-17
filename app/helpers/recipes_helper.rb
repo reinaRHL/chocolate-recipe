@@ -38,7 +38,7 @@ module RecipesHelper
         end
     end
     
-    def dark_liquidOK(dairy_amount, liqueur_amount, puree_amount, chocolate_amount)
+    def dark_liquidtoohigh(dairy_amount, liqueur_amount, puree_amount, chocolate_amount)
         if liqueur_amount == nil
             liqueur_amount = 0.0
         end
@@ -47,14 +47,14 @@ module RecipesHelper
             puree_amount = 0.0
         end
         
-        if 1.8 < chocolate_amount/(dairy_amount+liqueur_amount+puree_amount) and chocolate_amount/(dairy_amount+liqueur_amount+puree_amount) < 2.2
+        if chocolate_amount/(dairy_amount+liqueur_amount+puree_amount) < 1.8
             return true
         else
             return false
         end
     end
     
-    def milkwhite_liquidOK(dairy_amount, liqueur_amount, puree_amount, chocolate_amount)
+    def milkwhite_liquidtoohigh(dairy_amount, liqueur_amount, puree_amount, chocolate_amount)
         if liqueur_amount == nil
             liqueur_amount = 0.0
         end
@@ -63,7 +63,40 @@ module RecipesHelper
             puree_amount = 0.0
         end
         
-        if 2.3 < chocolate_amount/(dairy_amount+liqueur_amount+puree_amount) and chocolate_amount/(dairy_amount+liqueur_amount+puree_amount) < 2.7
+        if chocolate_amount/(dairy_amount+liqueur_amount+puree_amount) < 2.3
+            return true
+        else
+            return false
+        end
+    end
+    
+    
+    def dark_liquidtoolow(dairy_amount, liqueur_amount, puree_amount, chocolate_amount)
+        if liqueur_amount == nil
+            liqueur_amount = 0.0
+        end
+        
+        if puree_amount == nil
+            puree_amount = 0.0
+        end
+        
+        if chocolate_amount/(dairy_amount+liqueur_amount+puree_amount) > 2.2
+            return true
+        else
+            return false
+        end
+    end
+    
+    def milkwhite_liquidtoolow(dairy_amount, liqueur_amount, puree_amount, chocolate_amount)
+        if liqueur_amount == nil
+            liqueur_amount = 0.0
+        end
+        
+        if puree_amount == nil
+            puree_amount = 0.0
+        end
+        
+        if chocolate_amount/(dairy_amount+liqueur_amount+puree_amount) > 2.7
             return true
         else
             return false
