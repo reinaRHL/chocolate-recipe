@@ -7,7 +7,7 @@
     <% @recipes.each do |recipe| %>
       <div class = "row cn">
         <div class = "col-lg-8 col-md-8 col-sm-8 inner">
-          <h4><%= link_to recipe.title, recipe_path(recipe) %></h4>
+          <h4><%= link_to recipe.title, recipe_path(recipe), class: "title_text" %></h4>
           <h6><%= truncate(recipe.description, length: 17) %></h6>
         </div>
       
