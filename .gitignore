@@ -15,3 +15,10 @@
 /log/*
 !/log/.keep
 /tmp
+
+
+# Ignore cloud9 files
+.c9/
+/config/database.yml
+database.yml
+config/database.yml
