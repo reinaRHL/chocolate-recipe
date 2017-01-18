@@ -9,11 +9,10 @@
         <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited
         this recipe from being saved:
         </h2>
-      <ul>
         <% @recipe.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <div class="errormsg"><%= msg %></div>
         <% end %>
-      </ul>
+        <br>
     </div>
   <% end %>
  
